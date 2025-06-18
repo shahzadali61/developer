@@ -1,9 +1,9 @@
 "use client"
 
 import { useState, useEffect, useCallback, useRef } from "react"
-import Link from "next/link"
 import { Button, Drawer } from "antd"
-import { Menu, X } from "lucide-react"
+import { MenuOutlined, CloseOutlined } from "@ant-design/icons"
+import Link from "next/link"
 
 interface NavItem {
   href: string
@@ -26,48 +26,16 @@ export function Navigation() {
     { href: "#contact", label: "Contact" },
   ]
 
-  // Scroll position handler
   const handleScroll = useCallback(() => {
     setIsScrolled(window.scrollY > 50)
-  }, [])
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [handleScroll])
-
-  // Active section detection using IntersectionObserver
-  useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: "-20% 0px -70% 0px",
-      threshold: 0.1,
-    }
-
-    const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(`#${entry.target.id}`)
-        }
-      })
-    }
-
-    if (observerRef.current) observerRef.current.disconnect()
-
-    observerRef.current = new IntersectionObserver(observerCallback, observerOptions)
-
-    const sections = document.querySelectorAll("section[id]")
-    sections.forEach((section) => observerRef.current?.observe(section))
-
-    return () => observerRef.current?.disconnect()
   }, [])
 
   const handleNavClick = useCallback((href: string) => {
     const element = document.querySelector(href)
     if (element) {
-      const offset = 64
-      const position = element.getBoundingClientRect().top + window.pageYOffset - offset
-      window.scrollTo({ top: position, behavior: "smooth" })
+      const headerHeight = 64
+      const elementTop = element.getBoundingClientRect().top + window.pageYOffset - headerHeight
+      window.scrollTo({ top: elementTop, behavior: "smooth" })
     }
     setIsOpen(false)
   }, [])
@@ -79,8 +47,45 @@ export function Navigation() {
         handleNavClick(href)
       }
     },
-    [handleNavClick],
+    [handleNavClick]
   )
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [handleScroll])
+
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: "-20% 0px -70% 0px",
+      threshold: 0.1,
+    }
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.id
+          setActiveSection(sectionId)
+        }
+      })
+    }
+
+    if (observerRef.current) observerRef.current.disconnect()
+
+    observerRef.current = new IntersectionObserver(observerCallback, observerOptions)
+
+    const sections = document.querySelectorAll("section[id]")
+    sections.forEach((section) => {
+      if (observerRef.current) {
+        observerRef.current.observe(section)
+      }
+    })
+
+    return () => {
+      if (observerRef.current) observerRef.current.disconnect()
+    }
+  }, [])
 
   return (
     <>
@@ -92,45 +97,52 @@ export function Navigation() {
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-14 md:h-16">
-            <Link href="/" className="text-xl md:text-2xl font-bold text-gray-900" aria-label="DevPortfolio Home">
+            <Link
+              href="/"
+              className="text-xl md:text-2xl font-bold text-gray-900"
+              aria-label="DevPortfolio Home"
+            >
               Dev<span className="text-primary">Portfolio</span>
             </Link>
 
+            {/* Desktop Nav */}
             <div className="hidden md:flex items-center space-x-8">
               {navItems.map((item) => (
                 <button
                   key={item.href}
                   onClick={() => handleNavClick(item.href)}
                   onKeyDown={(e) => handleKeyDown(e, item.href)}
-                  aria-current={activeSection === item.href ? "page" : undefined}
-                  className={`relative transition-colors font-medium text-gray-700 hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary ${
-                    activeSection === item.href ? "text-primary font-semibold" : ""
+                  className={`text-gray-700 hover:text-primary transition-colors font-medium relative ${
+                    activeSection === item.href.substring(1) ? "text-primary font-semibold" : ""
                   }`}
+                  aria-current={activeSection === item.href.substring(1) ? "page" : undefined}
                 >
                   {item.label}
-                  {activeSection === item.href && (
-                    <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-primary rounded-full" />
+                  {activeSection === item.href.substring(1) && (
+                    <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-primary rounded-full"></span>
                   )}
                 </button>
               ))}
-              <Button type="primary" className="btn-primary" onClick={() => handleNavClick("#contact")}>
+              <Button type="primary" onClick={() => handleNavClick("#contact")}>
                 Hire Me
               </Button>
             </div>
 
+            {/* Mobile Menu Toggle */}
             <Button
               type="text"
-              className="btn-ghost md:hidden p-2"
+              className="md:hidden"
+              icon={isOpen ? <CloseOutlined /> : <MenuOutlined />}
               onClick={() => setIsOpen((prev) => !prev)}
               aria-label={isOpen ? "Close menu" : "Open menu"}
               aria-expanded={isOpen}
               aria-controls="mobile-menu"
-              icon={isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             />
           </div>
         </div>
       </nav>
 
+      {/* Drawer for Mobile */}
       <Drawer
         title={
           <span className="text-xl font-bold text-gray-900">
@@ -140,7 +152,7 @@ export function Navigation() {
         placement="left"
         onClose={() => setIsOpen(false)}
         open={isOpen}
-        width={320}
+        width={280}
         className="md:hidden"
         id="mobile-menu"
       >
@@ -148,20 +160,26 @@ export function Navigation() {
           {navItems.map((item) => (
             <button
               key={item.href}
-              onClick={() => handleNavClick(item.href)}
-              onKeyDown={(e) => handleKeyDown(e, item.href)}
-              aria-current={activeSection === item.href ? "page" : undefined}
-              className={`block w-full text-left px-4 py-4 transition-colors font-medium cursor-pointer border-b border-gray-100 relative ${
-                activeSection === item.href
-                  ? "text-primary font-semibold bg-red-50 border-l-4 border-l-primary"
+              className={`block w-full text-left px-4 py-3 font-medium transition-colors ${
+                activeSection === item.href.substring(1)
+                  ? "text-primary bg-gray-100 font-semibold border-l-4 border-primary"
                   : "text-gray-700 hover:text-primary"
               }`}
+              onClick={() => handleNavClick(item.href)}
+              onKeyDown={(e) => handleKeyDown(e, item.href)}
+              aria-current={activeSection === item.href.substring(1) ? "page" : undefined}
             >
               {item.label}
             </button>
           ))}
+
           <div className="pt-4">
-            <Button type="primary" size="large" className="btn-primary w-full" onClick={() => handleNavClick("#contact")}>
+            <Button
+              type="primary"
+              size="large"
+              className="w-full"
+              onClick={() => handleNavClick("#contact")}
+            >
               Hire Me
             </Button>
           </div>

@@ -1,5 +1,5 @@
 "use client";
-// import { Navigation } from "./pages/component/Navigation";
+import { Navigation } from "./pages/component/Navigation";
 import { Banner } from "./pages/component/Banner";
 import { About } from "./pages/component/About"; 
 import { Skills } from "./pages/component/Skills"; 
@@ -12,7 +12,7 @@ import { Footer } from "./pages/component/Footer";
 export default function Home() {
   return (
     <>
-    {/* <Navigation /> */}
+    <Navigation />
     <Banner/>
     <About/>
     <Skills/>
