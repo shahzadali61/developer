@@ -28,7 +28,6 @@ export function Banner() {
       id="home"
       style={{
         minHeight: "100vh",
-        background: "linear-gradient(to bottom right, #f8fafc, #ffe4e6)",
         display: "flex",
         alignItems: "center",
         padding: "40px 0",
@@ -110,7 +109,8 @@ export function Banner() {
             </Paragraph>
 
             <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
-              <Button
+              <Button 
+              className="btn-primary"
                 type="primary"
                 size="large"
                 onClick={() => handleNavClick("#about")}

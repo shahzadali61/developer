@@ -3,6 +3,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+    --primary-color: rgb(254, 45, 31);
+    --primary-hover: rgb(230, 40, 28);
+    --primary-active: rgb(200, 35, 25);
 }
 
 @theme inline {
@@ -17,6 +20,34 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+}
+.text-primary {
+  color: var(--primary-color) !important;
+}
+/* Primary Button Styles */
+.btn-primary {
+  background: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+  color: white !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 2px 8px rgba(254, 45, 31, 0.2) !important;
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover) !important;
+  border-color: var(--primary-hover) !important;
+  color: white !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(254, 45, 31, 0.3) !important;
+}
+
+.btn-primary:active,
+.btn-primary:focus {
+  background: var(--primary-active) !important;
+  border-color: var(--primary-active) !important;
+  color: white !important;
+  box-shadow: 0 2px 8px rgba(254, 45, 31, 0.4) !important;
 }
 
 body {

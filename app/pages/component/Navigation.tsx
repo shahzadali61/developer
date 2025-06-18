@@ -106,7 +106,7 @@ export function Navigation() {
             </Link>
 
             {/* Desktop Nav */}
-            <div className="hidden md:flex items-center space-x-8">
+            <div className="hidden md:flex items-center space-x-6">
               {navItems.map((item) => (
                 <button
                   key={item.href}
@@ -123,21 +123,27 @@ export function Navigation() {
                   )}
                 </button>
               ))}
-              <Button type="primary" onClick={() => handleNavClick("#contact")}>
+              <Button
+                type="primary"
+                className=""
+                onClick={() => handleNavClick("#contact")}
+              >
                 Hire Me
               </Button>
             </div>
 
             {/* Mobile Menu Toggle */}
-            <Button
-              type="text"
-              className="md:hidden"
-              icon={isOpen ? <CloseOutlined /> : <MenuOutlined />}
-              onClick={() => setIsOpen((prev) => !prev)}
-              aria-label={isOpen ? "Close menu" : "Open menu"}
-              aria-expanded={isOpen}
-              aria-controls="mobile-menu"
-            />
+        <div className="md:hidden">
+  <Button
+    type="text"
+    icon={isOpen ? <CloseOutlined /> : <MenuOutlined />}
+    onClick={() => setIsOpen((prev) => !prev)}
+    aria-label={isOpen ? "Close menu" : "Open menu"}
+    aria-expanded={isOpen}
+    aria-controls="mobile-menu"
+  />
+</div>
+
           </div>
         </div>
       </nav>
