@@ -54,7 +54,7 @@ export function Banner() {
                 }}
               >
                 <Image
-                  src="/placeholder.svg?height=300&width=300"
+                  src="/assets/images/laravel.png"
                   alt="Laravel Framework"
                   fill
                   sizes="(max-width: 768px) 100vw, 300px"
