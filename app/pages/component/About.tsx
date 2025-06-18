@@ -25,15 +25,13 @@ export function About() {
         <Row gutter={[48, 48]} align="middle">
           {/* Image Section */}
           <Col xs={24} lg={12}>
-           <div className="relative w-full h-96">
-          <Image
-            src="/assets/images/user.jpg"
-            alt="Developer Profile"
-            fill
-            sizes="(max-width: 768px) 100vw, 700px"
-            className="object-cover"
-          />
-        </div>
+             <Image
+              src="/assets/images/user.jpg"
+              alt="Developer Profile"
+              className="object-cover"
+              width={500} // Specify the width (in pixels)
+              height={300} // Specify the height (in pixels)
+            />
           </Col>
 
           {/* Text Section */}
