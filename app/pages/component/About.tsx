@@ -1,6 +1,6 @@
 "use client"
 
-import { Card, Tag, Row, Col } from "antd"
+import { Tag, Row, Col } from "antd"
 import Image from "next/image"
 
 export function About() {
@@ -20,26 +20,27 @@ export function About() {
   ]
 
   return (
-    <section id="about" style={{ padding: "80px 0", backgroundColor: "#fff" }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 20px" }}>
+    <section id="about" className="py-20 bg-white">
+      <div className="max-w-6xl mx-auto px-4">
         <Row gutter={[48, 48]} align="middle">
           {/* Image Section */}
           <Col xs={24} lg={12}>
-             <Image
-                  src="/assets/images/laravel.png"
-                  alt="Developer Profile"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 400px"
-                  style={{ objectFit: "cover" }}
-                />
+           <div className="relative w-full h-96">
+          <Image
+            src="/assets/images/user.jpg"
+            alt="Developer Profile"
+            fill
+            sizes="(max-width: 768px) 100vw, 700px"
+            className="object-cover"
+          />
+        </div>
           </Col>
+
           {/* Text Section */}
           <Col xs={24} lg={12}>
-            <h2 style={{ fontSize: 36, fontWeight: "bold", color: "#1f1f1f", marginBottom: 24 }}>
-              About Me
-            </h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">About Me</h2>
 
-            <div style={{ color: "#595959", fontSize: 16, lineHeight: 1.8 }}>
+            <div className="text-base text-gray-600 space-y-4 leading-relaxed">
               <p>
                 I&apos;m a passionate full-stack developer with over 3 years of experience in creating modern web
                 applications. I specialize in Laravel for robust backend development and Vue.js for dynamic,
@@ -55,36 +56,34 @@ export function About() {
               </p>
             </div>
 
-            <div style={{ marginTop: 32 }}>
-              <h3 style={{ fontSize: 20, fontWeight: 600, marginBottom: 16, color: "#1f1f1f" }}>
-                Technical Skills
-              </h3>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+            <div className="mt-8">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Technical Skills</h3>
+              <div className="flex flex-wrap gap-3">
                 {skills.map((skill) => (
-                  <Tag key={skill} color="red" style={{ padding: "4px 12px", fontSize: 14 }}>
+                  <Tag key={skill} color="red" className="px-3 py-1 text-sm font-medium">
                     {skill}
                   </Tag>
                 ))}
               </div>
             </div>
 
-            <Row gutter={[16, 16]} style={{ marginTop: 40 }}>
+            <Row gutter={[16, 16]} className="mt-10">
               <Col span={8}>
-                <div style={{ textAlign: "center" }}>
-                  <div style={{ fontSize: 28, fontWeight: "bold", color: "#1677ff" }}>50+</div>
-                  <div style={{ color: "#595959", fontSize: 14 }}>Projects Completed</div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-blue-600 mb-1">50+</div>
+                  <div className="text-gray-600 text-sm">Projects Completed</div>
                 </div>
               </Col>
               <Col span={8}>
-                <div style={{ textAlign: "center" }}>
-                  <div style={{ fontSize: 28, fontWeight: "bold", color: "#52c41a" }}>25+</div>
-                  <div style={{ color: "#595959", fontSize: 14 }}>Happy Clients</div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-green-600 mb-1">25+</div>
+                  <div className="text-gray-600 text-sm">Happy Clients</div>
                 </div>
               </Col>
               <Col span={8}>
-                <div style={{ textAlign: "center" }}>
-                  <div style={{ fontSize: 28, fontWeight: "bold", color: "#722ed1" }}>100%</div>
-                  <div style={{ color: "#595959", fontSize: 14 }}>Success Rate</div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-purple-600 mb-1">100%</div>
+                  <div className="text-gray-600 text-sm">Success Rate</div>
                 </div>
               </Col>
             </Row>
