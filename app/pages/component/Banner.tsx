@@ -35,67 +35,11 @@ export function Banner() {
     >
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 20px", width: "100%" }}>
         <Row gutter={[32, 32]} align="middle">
-          {/* Image Box */}
-          <Col xs={24} lg={12} style={{ textAlign: "center" }}>
-            <div style={{ position: "relative", display: "inline-block" }}>
-              <div
-                style={{
-                  width: 320,
-                  height: 320,
-                  background: "#fff",
-                  borderRadius: 24,
-                  boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
-                  padding: 32,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  position: "relative",
-                  zIndex: 1,
-                }}
-              >
-                <Image
-                  src="/assets/images/laravel.png"
-                  alt="Laravel Framework"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 300px"
-                  style={{ objectFit: "contain" }}
-                  priority
-                />
-              </div>
-              <div
-                style={{
-                  position: "absolute",
-                  top: -16,
-                  right: -16,
-                  width: 96,
-                  height: 96,
-                  backgroundColor: "red",
-                  borderRadius: "50%",
-                  opacity: 0.1,
-                  zIndex: 0,
-                }}
-              />
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: -24,
-                  left: -24,
-                  width: 128,
-                  height: 128,
-                  backgroundColor: "#1677ff", // Ant Design primary
-                  borderRadius: "50%",
-                  opacity: 0.1,
-                  zIndex: 0,
-                }}
-              />
-            </div>
-          </Col>
-
           {/* Text Section */}
           <Col xs={24} lg={12}>
-            <Title level={1} style={{ fontSize: 48, fontWeight: "bold", marginBottom: 24 }}>
+            <Title level={1} className="font-48px" style={{ marginBottom: 24 }}>
               Build Fast <br />
-              <span style={{ color: "#1677ff" }}>Applications</span> <br />
+              <span className="text-primary">Applications</span> <br />
               with Laravel + Vue Js
             </Title>
 
@@ -125,6 +69,16 @@ export function Banner() {
               >
                 Download Resume
               </Button>
+            </div>
+          </Col>
+                 <Col xs={24} lg={12} style={{ textAlign: "center" }}>
+              <div style={{ position: 'relative', width: '100%', height: '500px' }}>
+              <Image
+                src="/assets/images/laravel-hero.webp"
+                alt="Laravel Framework"
+                fill
+                style={{ objectFit: 'contain' }}
+              />
             </div>
           </Col>
         </Row>

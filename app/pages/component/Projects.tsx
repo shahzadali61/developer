@@ -73,7 +73,7 @@ export function Projects() {
     <section id="projects" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-12 text-gray-900">Featured Projects</h2>
+          <h2 className="font-36px text-center mb-12 text-gray-900">Featured Projects</h2>
 
           <div className="grid lg:grid-cols-2 gap-8">
             {projects.map((project) => (

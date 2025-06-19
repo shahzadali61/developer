@@ -1,17 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
-    --primary-color: rgb(254, 45, 31);
-    --primary-hover: rgb(230, 40, 28);
-    --primary-active: rgb(200, 35, 25);
+  --primary-color: rgb(254, 45, 31);
+  --primary-hover: rgb(230, 40, 28);
+  --primary-active: rgb(200, 35, 25);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: 'Poppins', sans-serif;
   --font-mono: var(--font-geist-mono);
 }
 
@@ -21,9 +22,11 @@
     --foreground: #ededed;
   }
 }
+
 .text-primary {
   color: var(--primary-color) !important;
 }
+
 /* Primary Button Styles */
 .btn-primary {
   background: var(--primary-color) !important;
@@ -50,7 +53,15 @@
   box-shadow: 0 2px 8px rgba(254, 45, 31, 0.4) !important;
 }
 
-body {
+.font-48px{
+  font-size: 48px !important;
+  font-weight:700 !important;
+}
+.font-36px{
+  font-size: 36px !important;
+  font-weight:700 !important;
+}
 
-  font-family: Arial, Helvetica, sans-serif;
+body {
+  font-family: 'Poppins', sans-serif;
 }

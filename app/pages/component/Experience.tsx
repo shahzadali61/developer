@@ -61,7 +61,7 @@ export function Experience() {
     <section id="experience" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-12 text-gray-900">Work Experience</h2>
+          <h2 className="font-36px text-center mb-12 text-gray-900">Work Experience</h2>
 
           <div className="space-y-8">
             {experiences.map((exp) => (

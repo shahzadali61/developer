@@ -36,7 +36,7 @@ export function About() {
 
           {/* Text Section */}
           <Col xs={24} lg={12}>
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">About Me</h2>
+            <h2 className="font-36px text-gray-900 mb-6">About Me</h2>
 
             <div className="text-base text-gray-600 space-y-4 leading-relaxed">
               <p>

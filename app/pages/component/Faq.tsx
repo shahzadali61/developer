@@ -134,7 +134,7 @@ export function Faq() {
     <section id="faq" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          <Title level={2} className="text-4xl font-bold text-center mb-4 text-gray-900">
+          <Title level={2} className="font-36px text-center mb-4 text-gray-900">
             Frequently Asked Questions
           </Title>
           <Paragraph className="text-center text-gray-600 mb-12 text-lg">

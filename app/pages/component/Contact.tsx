@@ -42,8 +42,7 @@ export function Contact() {
     <section id="contact" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-12 text-gray-900">Get In Touch</h2>
-
+          <h2 className="font-36px text-center mb-12 text-gray-900">Get In Touch</h2>
           <div className="grid lg:grid-cols-2 gap-12">
             <div>
               <h3 className="text-2xl font-semibold mb-6 text-gray-900">Let&apos;s Work Together</h3>
