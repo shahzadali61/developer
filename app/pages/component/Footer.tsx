@@ -115,7 +115,6 @@ export function Footer() {
               <p>Available for freelance work</p>
               <p>Remote & On-site projects</p>
             </div>
-
             <Button
               type="primary"
               className="btn-primary mt-4"
