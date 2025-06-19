@@ -105,6 +105,7 @@ export function Contact() {
                     <LinkedinOutlined className="text-lg" aria-hidden="true" />
                   </Link>
                 </div>
+                
               </div>
             </div>
 

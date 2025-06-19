@@ -18,23 +18,25 @@ export function Navigation() {
 
   const navItems: NavItem[] = [
     { href: "#home", label: "Home" },
-    { href: "#about", label: "About" },
-    { href: "#skills", label: "Skills" },
+    { href: "#about", label: "About Me" },
+    { href: "#skills", label: "My Skills" },
     { href: "#experience", label: "Experience" },
     { href: "#projects", label: "Projects" },
     { href: "#faq", label: "FAQ" },
-    { href: "#contact", label: "Contact" },
+    { href: "#contact", label: "Contact Me" },
   ]
 
+  // Handle scroll position for navbar shadow
   const handleScroll = useCallback(() => {
     setIsScrolled(window.scrollY > 50)
   }, [])
 
+  // Smooth scroll to section
   const handleNavClick = useCallback((href: string) => {
     const element = document.querySelector(href)
     if (element) {
       const headerHeight = 64
-      const elementTop = element.getBoundingClientRect().top + window.pageYOffset - headerHeight
+      const elementTop = element.getBoundingClientRect().top + window.scrollY - headerHeight
       window.scrollTo({ top: elementTop, behavior: "smooth" })
     }
     setIsOpen(false)
@@ -50,26 +52,29 @@ export function Navigation() {
     [handleNavClick]
   )
 
+  // Add scroll event listener
   useEffect(() => {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [handleScroll])
 
+  // ScrollSpy logic using IntersectionObserver
   useEffect(() => {
     const observerOptions = {
       root: null,
       rootMargin: "-20% 0px -70% 0px",
       threshold: 0.1,
     }
+const observerCallback = (entries: IntersectionObserverEntry[]) => {
+  const visible = entries
+    .filter((entry) => entry.isIntersecting)
+    .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
 
-    const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const sectionId = entry.target.id
-          setActiveSection(sectionId)
-        }
-      })
-    }
+  if (visible.length > 0) {
+    setActiveSection(visible[0].target.id)
+  }
+}
+
 
     if (observerRef.current) observerRef.current.disconnect()
 
@@ -77,18 +82,17 @@ export function Navigation() {
 
     const sections = document.querySelectorAll("section[id]")
     sections.forEach((section) => {
-      if (observerRef.current) {
-        observerRef.current.observe(section)
-      }
+      observerRef.current?.observe(section)
     })
 
     return () => {
-      if (observerRef.current) observerRef.current.disconnect()
+      observerRef.current?.disconnect()
     }
   }, [])
 
   return (
     <>
+      {/* Sticky Top Navbar */}
       <nav
         className={`fixed top-0 w-full z-50 transition-all duration-300 ${
           isScrolled ? "bg-white/95 backdrop-blur-sm shadow-sm" : "bg-white/90 backdrop-blur-sm"
@@ -97,6 +101,7 @@ export function Navigation() {
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-14 md:h-16">
+            {/* Logo */}
             <Link
               href="/"
               className="text-xl md:text-2xl font-bold text-gray-900"
@@ -112,6 +117,7 @@ export function Navigation() {
                   key={item.href}
                   onClick={() => handleNavClick(item.href)}
                   onKeyDown={(e) => handleKeyDown(e, item.href)}
+                  style={{ margin: "0px 10px", cursor: "pointer" }}
                   className={`text-gray-700 hover:text-primary transition-colors font-medium relative ${
                     activeSection === item.href.substring(1) ? "text-primary font-semibold" : ""
                   }`}
@@ -123,32 +129,24 @@ export function Navigation() {
                   )}
                 </button>
               ))}
-              <Button
-                type="primary"
-                className=""
-                onClick={() => handleNavClick("#contact")}
-              >
-                Hire Me
-              </Button>
             </div>
 
             {/* Mobile Menu Toggle */}
-        <div className="md:hidden">
-  <Button
-    type="text"
-    icon={isOpen ? <CloseOutlined /> : <MenuOutlined />}
-    onClick={() => setIsOpen((prev) => !prev)}
-    aria-label={isOpen ? "Close menu" : "Open menu"}
-    aria-expanded={isOpen}
-    aria-controls="mobile-menu"
-  />
-</div>
-
+            <div className="md:hidden">
+              <Button
+                type="text"
+                icon={isOpen ? <CloseOutlined /> : <MenuOutlined />}
+                onClick={() => setIsOpen((prev) => !prev)}
+                aria-label={isOpen ? "Close menu" : "Open menu"}
+                aria-expanded={isOpen}
+                aria-controls="mobile-menu"
+              />
+            </div>
           </div>
         </div>
       </nav>
 
-      {/* Drawer for Mobile */}
+      {/* Mobile Drawer Menu */}
       <Drawer
         title={
           <span className="text-xl font-bold text-gray-900">
