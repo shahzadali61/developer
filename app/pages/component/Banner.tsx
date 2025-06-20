@@ -36,7 +36,10 @@ export function Banner() {
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 20px", width: "100%" }}>
         <Row gutter={[32, 32]} align="middle">
           {/* Text Section */}
-          <Col xs={24} lg={12}>
+         <Col
+  xs={{ span: 24, order: 2 }}
+  lg={{ span: 12, order: 1 }}
+>
             <Title level={1} className="font-48px" style={{ marginBottom: 24 }}>
               Build Fast <br />
               <span className="text-primary">Applications</span> <br />
@@ -71,7 +74,11 @@ export function Banner() {
               </Button>
             </div>
           </Col>
-                 <Col xs={24} lg={12} style={{ textAlign: "center" }}>
+                 <Col
+  xs={{ span: 24, order: 1 }}
+  lg={{ span: 12, order: 2 }}
+  style={{ textAlign: "center" }}
+>
               <div style={{ position: 'relative', width: '100%', height: '500px' }}>
               <Image
                 src="/assets/images/laravel-hero.webp"

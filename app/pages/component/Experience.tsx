@@ -83,7 +83,7 @@ export function Experience() {
                   </div>
                 </div>
 
-                <p className="text-gray-600 mb-4">{exp.description}</p>
+                <p className="text-gray-600 mb-4 font-18px">{exp.description}</p>
 
                 <div className="mb-4">
                   <h4 className="font-semibold text-gray-900 mb-2">Technologies Used:</h4>

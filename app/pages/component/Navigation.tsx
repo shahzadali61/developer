@@ -176,17 +176,6 @@ const observerCallback = (entries: IntersectionObserverEntry[]) => {
               {item.label}
             </button>
           ))}
-
-          <div className="pt-4">
-            <Button
-              type="primary"
-              size="large"
-              className="w-full"
-              onClick={() => handleNavClick("#contact")}
-            >
-              Hire Me
-            </Button>
-          </div>
         </div>
       </Drawer>
     </>

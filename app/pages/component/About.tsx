@@ -39,16 +39,16 @@ export function About() {
             <h2 className="font-36px text-gray-900 mb-6">About Me</h2>
 
             <div className="text-base text-gray-600 space-y-4 leading-relaxed">
-              <p>
+              <p className="font-18px">
                 I&apos;m a passionate full-stack developer with over 3 years of experience in creating modern web
                 applications. I specialize in Laravel for robust backend development and Vue.js for dynamic,
                 responsive frontend experiences.
               </p>
-              <p>
+              <p className="font-18px">
                 My expertise extends beyond coding to include UI/UX design using Figma and Adobe XD, ensuring that
                 every application I build is not only functional but also visually appealing and user-friendly.
               </p>
-              <p>
+              <p className="font-18px">
                 I&apos;m committed to writing clean, maintainable code and staying up-to-date with the latest industry
                 trends and best practices.
               </p>

@@ -137,7 +137,7 @@ export function Faq() {
           <Title level={2} className="font-36px text-center mb-4 text-gray-900">
             Frequently Asked Questions
           </Title>
-          <Paragraph className="text-center text-gray-600 mb-12 text-lg">
+          <Paragraph className="text-center text-gray-600  mb-12 font-18px">
             Here are answers to some common questions about my services and process.
           </Paragraph>
 

@@ -117,7 +117,7 @@ export function Projects() {
               >
                 <Card.Meta
                   title={<span className="text-xl text-gray-900">{project.title}</span>}
-                  description={<p className="text-gray-600 mb-4">{project.description}</p>}
+                  description={<p className="text-gray-600 mb-4 font-18px">{project.description}</p>}
                 />
 
                 <div className="mt-4 mb-4">
